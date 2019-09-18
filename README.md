@@ -1,2 +1,2 @@
 # gitlab-external-pull-requests
-test
+branch
