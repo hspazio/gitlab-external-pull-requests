@@ -1,0 +1,21 @@
+image: java:latest
+
+stages:
+  - build
+  - execute
+
+build:
+  stage: build
+  variables:
+    CI_DEBUG_TRACE: "true"
+  script: /usr/lib/jvm/java-8-openjdk-amd64/bin/javac HelloWorld.java
+  artifacts:
+    paths:
+     - HelloWorld.*
+
+# only run this stage on MRs
+execute:
+  stage: execute
+  script: /usr/lib/jvm/java-8-openjdk-amd64/bin/java HelloWorld
+  only:
+    - external_pull_requests
